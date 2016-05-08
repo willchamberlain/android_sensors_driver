@@ -1,10 +1,10 @@
-# Bash
+#!/bin/bash
 
-../gradlew clean debug
+../gradlew clean assembleDebug
 if [ $? -eq 0 ]
  then
-  adb uninstall org.ros.android.android_sensors_driver
-  adb install bin/MainActivity-debug.apk
+  # -r tells it to re install
+  adb install -r build/outputs/apk/android_sensors_driver-debug.apk
   adb shell am start -n org.ros.android.android_sensors_driver/org.ros.android.android_sensors_driver.MainActivity
   adb logcat -c
   adb logcat
